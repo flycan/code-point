@@ -19,6 +19,7 @@
 |-tmp 临时存放文件 回收站
 |-usr 用户软件
 |-var （variable）存放经常变更的数据 日志等
+```
 
 更多参考：
 https://blog.csdn.net/beyondlee2011/article/details/85341516
