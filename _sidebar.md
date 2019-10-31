@@ -53,6 +53,7 @@
 	* [Websocket](network/websocket)
 	* [Reactor](network/reactor)
 	* [进程间通信](network/IPC)
+	* [负载均衡](network/loadbalance)
 
 * 数据结构
 	* [数据类型](datastructure/datatype)
