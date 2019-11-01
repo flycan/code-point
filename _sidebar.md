@@ -31,6 +31,12 @@
 	* [哨兵](redis/sentinel)
 	* [集群](redis/cluster)
 	* [配置文件](redis/conf)
+* Nginx
+	* [简介](nginx/nginx)
+	* [Lua模块](nginx/lua)
+	* [nginx优化](nginx/optimize)
+	* [常用模块](nginx/moudule)
+
 * PHP
 	* [PHP7](php/php7)
 	* [PHP7](php/kernel)
