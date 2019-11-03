@@ -6,6 +6,20 @@
 
 `limit_req_zone` 限制单位时间内的请求数，速率限制，使用漏桶算法
 
+    语法:	limit_req_zone $variable zone=name:size rate=rate;
+    默认值:	—
+    上下文:	http
+
+    设置一块共享内存限制域的参数，它可以用来保存键值的状态。 它特别保存了当前超出请求的数量。 键的值就是指定的变量（空值不会被计算）。 示例用法：
+
+    limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+    这里，状态被存在名为“one”，最大10M字节的共享内存里面。对于这个限制域来说 平均处理的请求频率不能超过每秒一次。
+
+    键值是客户端的IP地址。 如果不使用$remote_addr变量，而用$binary_remote_addr变量， 可以将每条状态记录的大小减少到64个字节，这样1M的内存可以保存大约1万6千个64字节的记录。 如果限制域的存储空间耗尽了，对于后续所有请求，服务器都会返回 503 (Service Temporarily Unavailable)错误。
+
+    请求频率可以设置为每秒几次（r/s）。如果请求的频率不到每秒一次， 你可以设置每分钟几次(r/m)。比如每秒半次就是30r/m。
+
+
 > IP访问控制模块(http_access_module)
 
 对特定的ip允许访问，默认是允许所有ip访问，开启限制使用  `deny all`
@@ -19,7 +33,8 @@
 
 禁止特定文件的访问, `sql|log|txt|jar|war|sh|py|php` 后缀的文件禁止访问
 
-    location ~.*\.(sql|log|txt|jar|war|sh|py|php) {     deny all; 
+    location ~.*\.(sql|log|txt|jar|war|sh|py|php) {     
+        deny all; 
     }
 
 > rewrite 模块（默认安装）
@@ -37,6 +52,11 @@
     redirect   #返回302临时重定向，浏览器地址会显示跳转后的URL地址 
     permanent  #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址
 
+> rewrite日志
+
+    语法:  rewrite_log on|off;
+    默认值: —
+    上下文: http,server, location,if
 
 > if指令
 
@@ -56,7 +76,7 @@
 > return指令
 
     区块：server，location，if
-    语法：return code URL; return URL;
+    语法：return code [text]; return URL;
 
     204（No Content）、400（Bad Request）、402（Payment Required）、403（Forbidden） 404（Not Found）、405（Method Not Allowed）、406（Not Acceptable）、 408（Request Timeout）、410（Gone）、411（Length Required）、 413（Request Entity Too Large）、416（Requested Range Not Satisfiable）、 500（Internal Server Error）、501（Not Implemented）、502（Bad Gateway）、 503（Service Unavailable）和504（Gateway Timeout）。
 
@@ -85,3 +105,34 @@
     localtion ~*(.img|) {
         expires 30s;
     }
+
+> 负载均衡
+
+负载均衡方法：
+
+- 轮询
+- 加权轮询
+- IP Hash
+- 最少连接数
+
+```
+语法:  upstream name { ... }
+默认值: —
+上下文: http
+
+upstream backend {
+    server backend1.com:9500 weight=5 max_fails=10 fail_timeout=10;
+    server backend2.com:9501;
+}
+
+server {
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
+
+
+参考：
+
+https://tengine.taobao.org/nginx_docs/cn/docs/

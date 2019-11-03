@@ -125,8 +125,9 @@ objs/nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot ope
     不能执行 make install 否则会完全覆盖
     cd objs
     cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak
-    /usr/local/nginx/sbin/nginx -s stop
+    # /usr/local/nginx/sbin/nginx -s stop
     cp nginx /usr/local/nginx/sbin/nginx
+    make upgrade
 ```
 
 Redis 模块的安装
@@ -146,10 +147,10 @@ cd nginx-1.17.2
 ./configure --prefix=/usr/local/nginx --add-module=../ngx_devel_kit-0.3.1 --add-module=../lua-nginx-module-0.10.14 --add-module=../redis2-nginx-module
 make
 不能执行 make install 否则会完全覆盖
-cd objs
 cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak
 /usr/local/nginx/sbin/nginx -s stop
-cp nginx /usr/local/nginx/sbin/nginx
+cp objs/nginx /usr/local/nginx/sbin/nginx
+make upgrade
 ```
 至此redis模块也安装完毕
 redis模块支持连接池 订阅等功能

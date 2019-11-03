@@ -91,3 +91,22 @@
     - 单个进程打开的文件描述符数不能超过user limit中- nofile的soft limit  
     - nofile的soft limit不能超过其hard limit  
     - nofile的hard limit不能超过/proc/sys/fs/nr_open
+
+> 信号
+
+SIGHUP 终止进程 终端线路挂断
+SIGINT 终止进程 中断进程
+SIGIOT 建立CORE文件 执行I/O自陷
+SIGKILL 终止进程 杀死进程
+SIGPIPE 终止进程 向一个没有读进程的管道写数据
+SIGALARM 终止进程 计时器到时
+SIGTERM 终止进程 软件终止信号
+SIGSTOP 停止进程 非终端来的停止信号
+SIGTSTP 停止进程 终端来的停止信号
+SIGCONT 忽略信号 继续执行一个停止的进程
+SIGURG 忽略信号 I/O紧急信号
+SIGIO 忽略信号 描述符上可以进行I/O
+SIGPROF 终止进程 统计分布图用计时器到时
+SIGUSR1 终止进程 用户定义信号1
+SIGUSR2 终止进程 用户定义信号2
+SIGVTALRM 终止进程 虚拟计时器到时

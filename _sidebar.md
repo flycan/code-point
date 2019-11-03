@@ -33,10 +33,11 @@
 	* [配置文件](redis/conf)
 * Nginx
 	* [简介](nginx/nginx)
-	* [Lua模块](nginx/lua)
 	* [nginx优化](nginx/optimize)
 	* [常用模块](nginx/moudule)
-
+	* [Lua模块](nginx/lua)
+	* [动态负载均衡](nginx/upsync)
+	* [配置参考](nginx/conf)
 * PHP
 	* [PHP7](php/php7)
 	* [PHP7](php/kernel)
@@ -76,6 +77,8 @@
 	* [PHP设计模式](design/php-design-pattern)
 * [MongoDB](mongo/mongo)
 * [Docker](docker/intro)
+	* [WSL](docker/wsl)
+	* [命令](docker/command)
 	* [Dockerfile](docker/dockerfile)
 	* [Compose](docker/compose)
 * 版本控制
