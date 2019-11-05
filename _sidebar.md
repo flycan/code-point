@@ -65,6 +65,7 @@
 * 数据结构
 	* [数据类型](datastructure/datatype)
 	* [排序&算法](datastructure/algorithm)
+	* [排序](datastructure/sort)
 * 系统设计
 	* [系统设计](design/sys)
 	* [消息队列](design/mq)
