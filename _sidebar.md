@@ -26,11 +26,13 @@
 	* [MySQL并发](mysql/concurrent)
 	* [MySQL配置](mysql/conf)
 	* [锁](mysql/lock)
+	* [其他](mysql/other)
 * Redis
 	* [主从复制](redis/replication)
 	* [哨兵](redis/sentinel)
 	* [集群](redis/cluster)
 	* [配置文件](redis/conf)
+	* [锁](redis/lock)
 * Nginx
 	* [简介](nginx/nginx)
 	* [nginx优化](nginx/optimize)
