@@ -14,6 +14,12 @@
     查找小于5M的文件
     find . -type f -size -5m
 
+3.使用scp从远处复制文件到本地目录
+
+    scp root@10.10.10.10:/usr/local/src/nginx-0.5.38.tar.gz /nginx/
+    上传本地文件到远程机器指定目录 指定端口 22
+    scp -rp -P 22 /nginx/nginx-0.5.38.tar.gz root@10.10.10.10:/usr/local/src/
+
 ### 文件结构
 
 1.硬链接和软连接区别
