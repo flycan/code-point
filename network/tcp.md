@@ -7,7 +7,7 @@
 
 > TCP/IP（TCP/IP Protocol Suite）是一个协议族，包含两个核心协议：TCP（传输控制协议）和IP（网际协议），类似计算机科学中的堆栈，因此又被称为TCP/IP协议栈，分为四个层次：
 
-  ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-ip-protocal.png)
+  ![Alt text](./images/tcp-ip-protocal.png)
 
 ## TCP/IP各个分层详解
 
@@ -35,7 +35,7 @@
   * wireshark（前称Ethereal）是一个网络数据包分析软件。网络数据包分析软件的功能是截取网络数据包，并尽可能显示出最为详细的网络数据包数据。
   * wireshark抓到的包与对应的协议层如下图所示：
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-wireshark.png)
+    ![Alt text](./images/tcp-wireshark.png)
 
     1、Frame：物理层的数据帧概况
 
@@ -63,7 +63,7 @@
 
     5、面向字节流。面向字节流的含义：虽然应用程序和TCP交互是一次一个数据块，但TCP把应用程序交下来的数据仅仅是一连串的无结构的字节流
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-byte-stream.png)
+      ![Alt text](./images/tcp-byte-stream.png)
 
 ## TCP头部信息
 
@@ -71,7 +71,7 @@
 
   * TCP报文首部，如下图所示：
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-packets-header.png)
+    ![Alt text](./images/tcp-packets-header.png)
 
   * TCP报文各个位置详解：
 
@@ -109,85 +109,88 @@
 
   * wireshark捕获到的TCP包中的每个字段如下图所示：
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-ip-header-map.png)
+    ![Alt text](./images/tcp-ip-header-map.png)
 
 ## 三、TCP三次握手
 
 > TCP建立连接时，会有三次握手过程，如下图所示，wireshark截获到了三次握手的三个数据包，第四个包才是http的，说明http的确是使用TCP建立连接的。
 
-  ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-three-way-handshake.png)
+  ![Alt text](./images/tcp-three-way-handshake.png)
 
   * TCP三次握手流程图
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-three-way-handshake2.png)
+    ![Alt text](./images/tcp-three-way-handshake2.png)
 
   * 下面来逐步分析三次握手过程：
 
     * 第一次握手：客户端向服务端发送连接请求包，标志位SYN（同步序号）置为1，序号为X=0。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-1.png)
+      ![Alt text](./images/tcp-handshake-1.png)
 
     * 第一次对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-1-1.png)
+      ![Alt text](./images/tcp-handshake-1-1.png)
 
     * 第二次握手：服务器收到客户端发过来报文，由SYN=1知道客户端要求建立联机。向客户端发送一个SYN和ACK都置为1的TCP报文，设置初始序号Y=0，将确认序号（Acknowledgement Number）设置为客户的序列号加1，即X+1 = 0+1 = 1，如下图：
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-2.png)
+      ![Alt text](./images/tcp-handshake-2.png)
 
     * 第二次对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-2-1.png)
+      ![Alt text](./images/tcp-handshake-2-1.png)
 
     * 第三次握手：客户端收到服务器发来的包后检查确认序号（Acknowledgement Number）是否正确，即第一次发送的序号加1（X+1=1）。以及标志位ACK是否为1。若正确，ACK标志位为1，SYN标志位为0。确认序号（AcknowledgementNumber）=Y+1=0+1=1，发送序号为X+1=1。服务端收到后确认序号值与ACK=1，则连接建立成功，可以传送数据。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-3.png)
+      ![Alt text](./images/tcp-handshake-3.png)
 
     * 第三次对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-handshake-3-1.png)
+      ![Alt text](./images/tcp-handshake-3-1.png)
 
 ## 四、TCP四次挥手
 
   * TCP断开连接时，会有四次断开过程，如下图所示，wireshark截获到了四次断开的四个数据包。
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect.png)
+    ![Alt text](./images/tcp-four-disconnect.png)
 
   * TCP四次挥手流程图：
 
-    ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-1.png)
+    ![Alt text](./images/tcp-four-disconnect-1.png)
 
   * 下面来逐步分析四次挥手过程：
 
     * 1、第一次挥手：客户端给服务器发送TCP包，用来关闭客户端到服务器的数据传送。将标志位FIN和ACK置为1，序号为X=1，确认序号为Z=1。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-1-1.png)
+      ![Alt text](./images/tcp-four-disconnect-1-1.png)
 
     * 第一次挥手对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-1-2.png)
+      ![Alt text](./images/tcp-four-disconnect-1-2.png)
 
     * 2、第二次挥手：服务器收到FIN后，发回一个ACK（标志位ACK=1），确认序号为收到的序号加1，即X=X+1=2。序号为收到的确认序号=Z。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-2-1.png)
+      ![Alt text](./images/tcp-four-disconnect-2-1.png)
 
     * 第二次挥手对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-2-2.png)
+      ![Alt text](./images/tcp-four-disconnect-2-2.png)
 
     * 3、服务器关闭与客户端的连接，发送一个FIN。标志位FIN和ACK置为1，序号为Y=1，确认序号为X=2。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-3-1.png)
+      ![Alt text](./images/tcp-four-disconnect-3-1.png)
 
     * 第三次挥手对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-3-2.png)
+      ![Alt text](./images/tcp-four-disconnect-3-2.png)
 
     * 4、客户端收到服务器发送的FIN之后，发回ACK确认（标志位ACK=1），确认序号为收到的序号加1，即Y+1=2。序号为收到的确认序号X=2。
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-4-1.png)
+      ![Alt text](./images/tcp-four-disconnect-4-1.png)
 
     * 第四次挥手对应TCP首部
 
-      ![Alt text](https://raw.githubusercontent.com/zqjflash/tcp-ip-protocal/master/tcp-four-disconnect-4-2.png)
+      ![Alt text](./images/tcp-four-disconnect-4-2.png)
 
+参考：
+
+https://github.com/zqjflash/tcp-ip-protocol
